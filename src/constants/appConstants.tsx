@@ -1,15 +1,4 @@
-interface IProject {
-    projectId: number,
-    projectName: string
-}
-
-interface IData {
-    taskId?: number,
-    taskName: string,
-    project: string,
-    comments: string,
-    key: string
-}
+import { IProject, INewTask } from "./interface";
 
 const projectList: Array<IProject> = [{
     projectId: 1,
@@ -22,11 +11,13 @@ const projectList: Array<IProject> = [{
     projectName: "Devops Project"
 }];
 
-const data: Array<IData> = [
+const data: Array<INewTask> = [
     {
         taskId: 1,
         taskName: 'Task name 1',
         project: "Java Project",
+        taskStartDate: '2021/01/01',
+        taskEndDate: '2021/01/05',
         comments: 'Sample Comments 1',
         key: '1'
     },
@@ -34,6 +25,8 @@ const data: Array<IData> = [
         taskId: 2,
         taskName: 'Task name 2',
         project: "Python Project",
+        taskStartDate: '2021/01/01',
+        taskEndDate: '2021/05/05',
         comments: 'Sample Comments 2',
         key: '2'
     },
@@ -41,6 +34,8 @@ const data: Array<IData> = [
         taskId: 3,
         taskName: 'Task name 3',
         project: "Devops Project",
+        taskStartDate: '2021/11/01',
+        taskEndDate: '2021/01/05',
         comments: 'Sample Comments 3',
         key: '3'
     },

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Space, Table } from 'antd';
 import {
     PlusCircleOutlined,
@@ -8,22 +8,7 @@ import {
 import CustomModal from './../components/CustomModal';
 import TaskOperation from './../components/TaskOperation';
 import { data } from './../constants/appConstants';
-
-interface INewTask {
-    taskId: number,
-    taskName: string,
-    project: string,
-    comments: string,
-    key: string
-}
-
-interface IColumns {
-    title: string,
-    dataIndex?: string,
-    key: string,
-    render?: any
-}
-
+import { IColumns, INewTask } from "./../constants/interface";
 
 const Tasks = () => {
 
@@ -49,6 +34,16 @@ const Tasks = () => {
             title: 'Project',
             dataIndex: 'project',
             key: 'project',
+        },
+        {
+            title: 'Start Date',
+            dataIndex: 'taskStartDate',
+            key: 'taskStartDate',
+        },
+        {
+            title: 'End Date',
+            dataIndex: 'taskEndDate',
+            key: 'taskEndDate',
         },
         {
             title: 'Comments',
@@ -86,14 +81,14 @@ const Tasks = () => {
 
     const editTask = (newTask: INewTask) => {
         const listData = [...dataSource];
-        listData.splice(newTask.taskId - 1, 1, newTask);
+        listData.length > 0 && newTask.taskId && listData.splice(newTask.taskId - 1, 1, newTask);
         setListData(listData);
         setIsEdit(false);
     }
 
     const deleteTask = (newTask: INewTask) => {
         const listData = [...dataSource];
-        listData.splice(newTask.taskId - 1, 1);
+        listData.length > 0 && newTask.taskId && listData.splice(newTask.taskId - 1, 1);
         setListData(listData);
         setIsDelete(false);
     }
