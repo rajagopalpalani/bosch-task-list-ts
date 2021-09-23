@@ -30,3 +30,30 @@ export interface ITaskOperationProps {
     isEdit?: boolean,
     isDelete?: boolean
 }
+
+export interface ICustomModalProps {
+    title: string,
+    open: boolean,
+    handleCancel: any,
+    children: any
+}
+
+export interface INavNames {
+    name: Array<INavList>;
+}
+
+export interface INavList {
+    menuName: string,
+    icon: any
+}
+
+export interface IMenuProps {
+    currentMenu: number,
+    collapsed: boolean,
+    setCurrentMenu: any
+}
+
+export interface IDesignHeaderProps {
+    setCollapse: any,
+    collapsed: boolean
+}

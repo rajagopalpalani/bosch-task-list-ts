@@ -5,22 +5,11 @@ import {
   UnorderedListOutlined,
   ContactsOutlined
 } from "@ant-design/icons";
+import { INavNames, INavList, IMenuProps } from './../constants/interface';
 
-interface INavNames {
-  name: Array<INavList>;
-}
-interface INavList {
-  menuName: string,
-  icon: any
-}
-interface IProps {
-  currentMenu: number,
-  collapsed: boolean,
-  setCurrentMenu: any
-}
-
-const MenuList = ({ currentMenu, setCurrentMenu, collapsed }: IProps) => {
+const MenuList = ({ currentMenu, setCurrentMenu, collapsed }: IMenuProps) => {
   const navList: INavNames = { name: [{ menuName: "Tasks", icon: <UnorderedListOutlined /> }, { menuName: "Contact Us", icon: <ContactsOutlined /> }] };
+  
   return (
     <React.Fragment>
       <Menu theme="dark" defaultSelectedKeys={[currentMenu.toString()]} inlineCollapsed={collapsed}>

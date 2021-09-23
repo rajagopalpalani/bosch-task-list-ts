@@ -4,14 +4,11 @@ import {
     MenuOutlined
 } from "@ant-design/icons";
 import "antd/dist/antd.css";
+import { IDesignHeaderProps } from './../constants/interface';
+
 const { Header } = Layout;
 
-interface IProps {
-    setCollapse: any,
-    collapsed: boolean
-}
-
-const DesignHeader = ({ setCollapse, collapsed }: IProps) => {
+const DesignHeader = ({ setCollapse, collapsed }: IDesignHeaderProps) => {
     return (
         <React.Fragment>
             <Header className="header">

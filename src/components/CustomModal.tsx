@@ -1,18 +1,8 @@
 import React from "react";
 import { Modal } from "antd";
+import { ICustomModalProps } from './../constants/interface';
 
-interface IProps {
-    title: string,
-    open: boolean,
-    setOpen: any,
-    children: any
-}
-
-const CustomModal = ({ title, open, setOpen, children }: IProps) => {
-
-    const handleCancel = () => {
-        setOpen(false);
-    };
+const CustomModal = ({ title, open, handleCancel, children }: ICustomModalProps) => {
 
     return (
         <>

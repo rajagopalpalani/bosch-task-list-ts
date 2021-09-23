@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Space, Table } from 'antd';
 import {
     PlusCircleOutlined,
     EditOutlined,
     DeleteOutlined
 } from "@ant-design/icons";
+
+import { FetchMemoContainer } from "./FetchContainer";
+
 import CustomModal from './../components/CustomModal';
 import TaskOperation from './../components/TaskOperation';
+
+import { fetchData } from './../actions/fetchData';
+
 import { data } from './../constants/appConstants';
 import { IColumns, INewTask } from "./../constants/interface";
 
@@ -93,17 +99,29 @@ const Tasks = () => {
         setIsDelete(false);
     }
 
+    const handleCancel = () => {
+        setIsCreate(false);
+        setIsCreate(false);
+        setIsCreate(false);
+    }
+
     return (
         <div className="site-layout-background content-height">
             <Space><Button type="primary" size={"large"} className="red-btn" onClick={() => setIsCreate(true)}><PlusCircleOutlined />Create Task</Button></Space>
-            {dataSource && dataSource.length > 0 && <Table className="task-table" columns={columns} dataSource={dataSource} />}
-            {isCreate && <CustomModal open={isCreate} setOpen={setIsCreate} title={'Create Task'}  >
+            {dataSource && dataSource.length > 0 &&
+                <FetchMemoContainer action={fetchData(dataSource)}>
+                    {(dataSource: Array<INewTask>) => {
+                        return <Table className="task-table" columns={columns} dataSource={dataSource} />;
+                    }}
+                </FetchMemoContainer>
+            }
+            {isCreate && <CustomModal open={isCreate} handleCancel={handleCancel} title={'Create Task'}  >
                 <TaskOperation createTask={createTask} setOpen={setIsCreate} listData={dataSource} />
             </CustomModal>}
-            {isEdit && <CustomModal open={isEdit} setOpen={setIsEdit} title={'Edit Task'}  >
+            {isEdit && <CustomModal open={isEdit} handleCancel={handleCancel} title={'Edit Task'}  >
                 <TaskOperation editTask={editTask} setOpen={setIsEdit} listData={dataSource} isEdit={isEdit} currentTaskData={currentTaskData} />
             </CustomModal>}
-            {isDelete && <CustomModal open={isDelete} setOpen={setIsDelete} title={'Delete Task'} >
+            {isDelete && <CustomModal open={isDelete} handleCancel={handleCancel} title={'Delete Task'} >
                 <TaskOperation deleteTask={deleteTask} setOpen={setIsDelete} listData={dataSource} isDelete={isDelete} currentTaskData={currentTaskData} />
             </CustomModal>}
         </div>
